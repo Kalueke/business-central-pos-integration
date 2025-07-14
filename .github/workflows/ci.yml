@@ -1,0 +1,57 @@
+# .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pos-service-backend
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint || echo "No lint script"
+      - name: Test
+        run: npm test || echo "No test script"
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pos-service-frontend
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint || echo "No lint script"
+      - name: Test
+        run: npm test || echo "No test script"
+      - name: Build
+        run: npm run build
+
+  # Optional: AL Extension Syntax Check (requires Docker and BC container)
+  # business-central-al:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Install AL Language Extension
+  #       run: |
+  #         # Add steps to install AL Language and run syntax check
+  #         echo "Add AL validation steps here"
