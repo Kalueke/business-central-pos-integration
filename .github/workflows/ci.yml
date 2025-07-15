@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# .github/workflows/ci.yml
+>>>>>>> 624c259ef4077ace8a3055bffb9a1e0af734fcb1
 name: CI
 
 on:
@@ -53,4 +57,8 @@ jobs:
   #     - name: Install AL Language Extension
   #       run: |
   #         # Add steps to install AL Language and run syntax check
+<<<<<<< HEAD
   #         echo "Add AL validation steps here" 
+=======
+  #         echo "Add AL validation steps here"
+>>>>>>> 624c259ef4077ace8a3055bffb9a1e0af734fcb1
