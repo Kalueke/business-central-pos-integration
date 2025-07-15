@@ -147,7 +147,7 @@ page 50100 "BC POS Integration"
                 end;
             }
 
-            action(ManualSync)
+            action(ExecuteManualSync)
             {
                 ApplicationArea = All;
                 Caption = 'Manual Sync';
@@ -156,7 +156,7 @@ page 50100 "BC POS Integration"
 
                 trigger OnAction()
                 begin
-                    ManualSync();
+                    DoManualSync();
                 end;
             }
 
@@ -173,7 +173,7 @@ page 50100 "BC POS Integration"
                 end;
             }
 
-            action(ViewSyncLog)
+            action(OpenSyncLog)
             {
                 ApplicationArea = All;
                 Caption = 'View Sync Log';
@@ -182,7 +182,7 @@ page 50100 "BC POS Integration"
 
                 trigger OnAction()
                 begin
-                    ViewSyncLog();
+                    DoOpenSyncLog();
                 end;
             }
         }
@@ -221,7 +221,7 @@ page 50100 "BC POS Integration"
             Message('Connection test failed. Please check your settings.');
     end;
 
-    local procedure ManualSync()
+    local procedure DoManualSync()
     var
         POSIntegrationMgt: Codeunit "POS Integration Mgt.";
     begin
@@ -261,7 +261,7 @@ page 50100 "BC POS Integration"
             Message('Failed to create sales order. Check the sync log for details.');
     end;
 
-    local procedure ViewSyncLog()
+    local procedure DoOpenSyncLog()
     var
         POSSyncLog: Page "POS Sync Log";
     begin
